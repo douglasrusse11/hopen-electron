@@ -10,6 +10,16 @@
       "StackName": "amplify-hopen-dev-142501",
       "StackId": "arn:aws:cloudformation:eu-west-1:264950887259:stack/amplify-hopen-dev-142501/9540a4f0-82a1-11ec-b54b-0202ecf84439",
       "AmplifyAppId": "d1x7i4gx0fnd4h"
+    },
+    "categories": {
+      "auth": {
+        "hopen8e49c17d": {}
+      },
+      "function": {
+        "hopen8e49c17dPostConfirmation": {
+          "GROUP": "Admin"
+        }
+      }
     }
   }
 }
