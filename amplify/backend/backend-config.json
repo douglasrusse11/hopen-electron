@@ -1,12 +1,48 @@
 {
+  "function": {
+    "scraper": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "addDataToDB": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "scraper",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ]
+    },
+    "hopenc485c56aPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "storage": {
+    "scraper": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "api": {},
   "auth": {
-    "hopen8e49c17d": {
+    "hopenc485c56a": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "hopen8e49c17dPostConfirmation",
+          "resourceName": "hopenc485c56aPostConfirmation",
           "triggerProvider": "Cognito",
           "attributes": [
             "Arn",
@@ -33,13 +69,6 @@
           "EMAIL"
         ]
       }
-    }
-  },
-  "function": {
-    "hopen8e49c17dPostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   }
 }

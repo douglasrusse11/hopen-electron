@@ -24,7 +24,7 @@ exports.handler = async event => {
       UserPoolId: event.userPoolId,
       Username: event.userName,
     };
-
+    
     try {
       await cognitoProvider.getGroup(groupParams).promise();
     } catch (e) {

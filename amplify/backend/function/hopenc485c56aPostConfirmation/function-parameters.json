@@ -3,15 +3,15 @@
   "modules": [
     "add-to-group"
   ],
-  "parentResource": "hopen8e49c17d",
-  "functionName": "hopen8e49c17dPostConfirmation",
-  "resourceName": "hopen8e49c17dPostConfirmation",
+  "parentResource": "hopenc485c56a",
+  "functionName": "hopenc485c56aPostConfirmation",
+  "resourceName": "hopenc485c56aPostConfirmation",
   "parentStack": "auth",
   "triggerEnvs": [],
   "triggerDir": "/snapshot/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
   "triggerTemplate": "PostConfirmation.json.ejs",
   "triggerEventPath": "PostConfirmation.event.json",
-  "roleName": "hopen8e49c17dPostConfirmation",
+  "roleName": "hopenc485c56aPostConfirmation",
   "skipEdit": true,
   "GROUP": "Admin",
   "enableCors": false
