@@ -1,4 +1,8 @@
-type Resource @model {
+type Resource @model 
+@auth(rules: [
+  {allow: groups, groups: ["Admin"], operations: [create, read, update, delete]},
+  {allow: public, operations: [read] }
+]){
   id: ID!
   category: ResourceType!
   name: String!
