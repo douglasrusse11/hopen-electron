@@ -1,0 +1,20 @@
+type Resource @model {
+  id: ID!
+  category: ResourceType!
+  name: String!
+  address: String
+  description: String
+  phoneNumber: String
+  emailAddress: String
+  openingHours: String
+}
+
+enum ResourceType {
+  Accomodation
+  Food
+  Clothing
+  Health
+  Sport
+  Legal
+  Education
+}
