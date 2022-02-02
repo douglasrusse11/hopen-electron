@@ -7,6 +7,7 @@ import Nav from '../components/Nav';
 import Home from './Home';
 import ResourceList from './ResourceList';
 import ResourceContainer from './ResourceContainer';
+import Seeder from './Seeder';
 import { Resource } from '../models';
 
 const initialState = {
@@ -62,6 +63,7 @@ const Router = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} />} />
                 <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} />} />
+                <Route path="/seeder" element={<Seeder />} />
             </Routes>
         </BrowserRouter>
     )
