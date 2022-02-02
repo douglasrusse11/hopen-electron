@@ -6,8 +6,21 @@ import Nav from '../components/Nav';
 import Home from './Home';
 import ResourceList from './ResourceList';
 
+const initialState = {
+    category: '',
+    name: '',
+    address: '',
+    description: '',
+    phoneNumber: '',
+    emailAddress: '',
+    openingHours: '',
+    latlng: [0, 0]
+};
+
 const Router = () => {
     const [user, setUser] = useState(null);
+    const [formData, setFormData] = useState(initialState);
+    const [displayUpdateForm, setDisplayUpdateForm] = useState({id: 0, display: false})
 
     useEffect(() => {
         getUser()
@@ -34,7 +47,7 @@ const Router = () => {
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/resources/bycategory/:category" element={<ResourceList />} />
+                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} setDisplayUpdateForm={setDisplayUpdateForm} />} />
             </Routes>
         </BrowserRouter>
     )

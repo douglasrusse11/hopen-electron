@@ -25,6 +25,7 @@ export declare class Resource {
   readonly phoneNumber?: string;
   readonly emailAddress?: string;
   readonly openingHours?: string;
+  readonly latlng?: (number | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Resource, ResourceMetaData>);

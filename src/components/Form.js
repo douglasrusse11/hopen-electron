@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResourceType } from './models';
+import { ResourceType } from '../models';
 
 const Form = ({onSubmit, formData, setFormData}) => {
 
@@ -40,9 +40,9 @@ const Form = ({onSubmit, formData, setFormData}) => {
 
     return (
         <>
-            <select name="category" onChange={onChange} defaultValue={formData.style} >
+            <select name="category" onChange={onChange} defaultValue={formData.category} >
                     { Object.values(ResourceType).map((resourceType, index) => (
-                            <option key={`styleOption_${index}`} value={resourceType} >{resourceType}</option>
+                            <option key={`resourceOption_${index}`} value={resourceType} >{resourceType}</option>
                     ))}
             </select>
             <input type="text" placeholder="Name" name="name" value={formData.name} onChange={onChange} />
