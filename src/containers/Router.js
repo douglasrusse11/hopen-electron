@@ -4,6 +4,7 @@ import {Auth, Hub} from 'aws-amplify';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Home from './Home';
+import ResourceList from './ResourceList';
 
 const Router = () => {
     const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ const Router = () => {
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/resources/bycategory/:category" element={<ResourceList />} />
             </Routes>
         </BrowserRouter>
     )

@@ -7,7 +7,7 @@ const Nav = () => {
         <div style={navStyle}>
         { (
             Object.values(ResourceType).map((style, index) => (
-                <Link style={linkStyle} key={`style_${index}`} to={`/restaurants/bystyle/${style}`}>
+                <Link style={linkStyle} key={`style_${index}`} to={`/resources/bycategory/${style}`}>
                     <h3 style={headerStyle}>{style}</h3>
                 </Link>
         )))}
