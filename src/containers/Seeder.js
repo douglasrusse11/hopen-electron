@@ -6,12 +6,6 @@ const Seeder = () => {
 
     const [data, setData] = useState(null)
 
-    function delay(ms) {
-        return new Promise((resolve) => {
-          setTimeout(resolve, ms);
-        });
-    }
-
     const onChange = (e) => {
         setData(e.target.value);
     }
