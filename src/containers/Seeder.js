@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {DataStore, Predicates} from '@aws-amplify/datastore';
 import {Resource} from '../models';
+import {withAuthenticator} from '@aws-amplify/ui-react';
 
 const Seeder = () => {
 
@@ -45,4 +46,4 @@ const Seeder = () => {
 
 }
 
-export default Seeder;
+export default withAuthenticator(Seeder);
