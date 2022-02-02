@@ -35,7 +35,9 @@ const styles = {
     },
     heading: {
         fontSize: 42,
-        margin: 0
+        margin: 0,
+        color: 'black',
+        padding: '0px 10px 0px 10px'
     }
 }
 

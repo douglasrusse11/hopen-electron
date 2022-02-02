@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
 import Header from '../components/Header';
+import Nav from '../components/Nav';
 
 const Router = () => {
     const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ const Router = () => {
     return (
         <BrowserRouter >
             <Header user={user} />
+            <Nav />
         </BrowserRouter>
     )
 }
