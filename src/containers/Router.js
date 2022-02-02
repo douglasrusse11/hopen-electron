@@ -32,16 +32,27 @@ const Router = () => {
         })
     }, [])
 
-    const getUser = async () => {
-        try {
-            const data = await Auth.currentAuthenticatedUser();
-            const userInfo = {username: data.username, isAdmin: data.signInUserSession.idToken.payload['cognito:groups'] && data.signInUserSession.idToken.payload['cognito:groups'].includes('Admin'), ...data.attributes};
-            setUser(userInfo);
-        } catch (err) {
-            setUser(null);
-            console.log('error: ', err);
+    useEffect(() => {
+        const subscription = DataStore.observe(Resource)
+                                      .subscribe(() => fetchResources())
+        return () => subscription.unsubscribe()
+      }, []);
+
+      
+      const getUser = async () => {
+          try {
+              const data = await Auth.currentAuthenticatedUser();
+              const userInfo = {username: data.username, isAdmin: data.signInUserSession.idToken.payload['cognito:groups'] && data.signInUserSession.idToken.payload['cognito:groups'].includes('Admin'), ...data.attributes};
+              setUser(userInfo);
+            } catch (err) {
+                setUser(null);
+                console.log('error: ', err);
+            }
         }
-    }
+        
+        const fetchResources = () => {
+            DataStore.query(Resource)
+        }
 
     const deleteResource = async (id) => {
         const resource = await DataStore.query(Resource, id);

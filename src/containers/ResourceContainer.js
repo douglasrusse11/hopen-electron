@@ -4,6 +4,7 @@ import { DataStore } from '@aws-amplify/datastore';
 import { Resource } from '../models';
 import ResourceDetail from '../components/ResourceDetail';
 import Map from '../components/Map';
+import Form from '../components/Form';
 
 const ResourceContainer = ({user, formData, setFormData, deleteResource}) => {
     const [resource, setResource] = useState(null);
@@ -16,8 +17,7 @@ const ResourceContainer = ({user, formData, setFormData, deleteResource}) => {
     }, [])
 
     const updateResource = async (id) => {
-        const resource = await DataStore.query(resource, id);
-        await DataStore.save(resource.copyOf(resource, updated => {
+        await DataStore.save(Resource.copyOf(resource, updated => {
             updated.category = formData.category;
             updated.name = formData.name;
             updated.address = formData.address;
@@ -27,7 +27,9 @@ const ResourceContainer = ({user, formData, setFormData, deleteResource}) => {
             updated.openingHours = formData.openingHours;
             updated.latlng = formData.latlng;
         }))
-        setDisplayUpdateForm({id: 0, display: false});
+        setDisplayUpdateForm(false);
+        await DataStore.query(Resource, id)
+            .then(res => setResource(res))
     }
 
     return (
@@ -35,7 +37,10 @@ const ResourceContainer = ({user, formData, setFormData, deleteResource}) => {
         { resource && (
             <>
                 <Map resource={resource} />
-                <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
+                { displayUpdateForm ?
+                    <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} /> :
+                    <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
+                }
             </>
         )}
         </>

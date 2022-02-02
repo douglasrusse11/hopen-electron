@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 
 const Map = ({resource}) => {
 
@@ -22,8 +22,16 @@ const Map = ({resource}) => {
                     {resource.address}
                 </Popup>
             </Marker>
+            <UpdateMap resource={resource} />
         </MapContainer>
     );
 }
+
+function UpdateMap({ resource }) {
+        const map = useMap();
+        map.setView([resource.latlng[0], resource.latlng[1]], map.getZoom());
+      
+        return null;
+    }
 
 export default Map;
