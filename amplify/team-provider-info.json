@@ -25,7 +25,7 @@
         },
         "scraper": {
           "deploymentBucketName": "amplify-hopen-dev-142501-deployment",
-          "s3Key": "amplify-builds/scraper-4f4948382b477a6c6f54-build.zip",
+          "s3Key": "amplify-builds/scraper-4772793856626e743258-build.zip",
           "scraper": "scraper"
         },
         "addDataToDB": {
