@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { DataStore } from '@aws-amplify/datastore';
 import { Resource } from '../models';
 import ResourceDetail from '../components/ResourceDetail';
+import Map from '../components/Map';
 
 const ResourceContainer = () => {
     const [resource, setResource] = useState(null);
@@ -14,7 +15,14 @@ const ResourceContainer = () => {
     }, [])
 
     return (
-        <ResourceDetail resource={resource} />
+        <>
+        { resource && (
+            <>
+                <Map resource={resource} />
+                <ResourceDetail resource={resource} />
+            </>
+        )}
+        </>
     )
 
 }
