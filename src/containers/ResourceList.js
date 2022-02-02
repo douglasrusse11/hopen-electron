@@ -54,7 +54,7 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
     const displayForm = (style) => {
         return (
             <div style={styles.container}>
-                {user && user.isAdmin && (displayAddNew ? <button onClick={() => {setFormData(initialState); setDisplayUpdateForm({id: 0, display: false}); setDisplayAddNew(false)}}>Add new</button> : <Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} />)}
+                {user && user.isAdmin && (displayAddNew ? <button onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>Add new</button> : <Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} />)}
             </div>
         )
     }

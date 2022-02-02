@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
+import {DataStore} from '@aws-amplify/datastore';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Home from './Home';
 import ResourceList from './ResourceList';
 import ResourceContainer from './ResourceContainer';
+import { Resource } from '../models';
 
 const initialState = {
     category: '',
@@ -21,7 +23,6 @@ const initialState = {
 const Router = () => {
     const [user, setUser] = useState(null);
     const [formData, setFormData] = useState(initialState);
-    const [displayUpdateForm, setDisplayUpdateForm] = useState({id: 0, display: false})
 
     useEffect(() => {
         getUser()
@@ -42,14 +43,19 @@ const Router = () => {
         }
     }
 
+    const deleteResource = async (id) => {
+        const resource = await DataStore.query(Resource, id);
+        await DataStore.delete(resource);
+    }
+
     return (
         <BrowserRouter >
             <Header user={user} />
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} setDisplayUpdateForm={setDisplayUpdateForm} />} />
-                <Route path="/resources/:id" element={<ResourceContainer />} />
+                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} />} />
+                <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} deleteResource={deleteResource} />} />
             </Routes>
         </BrowserRouter>
     )
