@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
+import Home from './Home';
 
 const Router = () => {
     const [user, setUser] = useState(null);
@@ -30,6 +31,9 @@ const Router = () => {
         <BrowserRouter >
             <Header user={user} />
             <Nav />
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
         </BrowserRouter>
     )
 }
