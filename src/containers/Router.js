@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Home from './Home';
 import ResourceList from './ResourceList';
+import ResourceContainer from './ResourceContainer';
 
 const initialState = {
     category: '',
@@ -48,6 +49,7 @@ const Router = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} setDisplayUpdateForm={setDisplayUpdateForm} />} />
+                <Route path="/resources/:id" element={<ResourceContainer />} />
             </Routes>
         </BrowserRouter>
     )
