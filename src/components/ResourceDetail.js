@@ -1,4 +1,6 @@
-const ResourceDetail = ({resource, user, formData, setFormData, displayUpdateForm, setDisplayUpdateForm, deleteResource}) => {
+import { Link } from 'react-router-dom';
+
+const ResourceDetail = ({resource, user, setFormData, setDisplayUpdateForm, deleteResource}) => {
 
     return (
         <div>
@@ -14,8 +16,10 @@ const ResourceDetail = ({resource, user, formData, setFormData, displayUpdateFor
             <div>
             { user && user.isAdmin && (
                     <>
-                        <button style={{height: 20}} onClick={() => { setFormData({category: resource.category, name: resource.name, address: resource.address, description: resource.description, phoneNumber: resource.phoneNumber, emailAddress: resource.emailAddress, openingHours: resource.openingHours, latlng: resource.latlng}); setDisplayUpdateForm({id: resource.id, display: true})}}>Update</button>
-                        <button style={{height: 20}} onClick={() => deleteResource(resource.id)}>Delete</button>
+                        <button style={{height: 20}} onClick={() => { setFormData({category: resource.category, name: resource.name, address: resource.address, description: resource.description, phoneNumber: resource.phoneNumber, emailAddress: resource.emailAddress, openingHours: resource.openingHours, latlng: resource.latlng}); setDisplayUpdateForm(true)}}>Update</button>
+                        <Link to={`/resources/bycategory/${resource.category}`}>
+                            <button style={{height: 20}} onClick={() => deleteResource(resource.id)}>Delete</button>
+                        </Link>
                     </>
                 )}
             </div>

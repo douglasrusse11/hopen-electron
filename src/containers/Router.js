@@ -54,11 +54,6 @@ const Router = () => {
             DataStore.query(Resource)
         }
 
-    const deleteResource = async (id) => {
-        const resource = await DataStore.query(Resource, id);
-        await DataStore.delete(resource);
-    }
-
     return (
         <BrowserRouter >
             <Header user={user} />
@@ -66,7 +61,7 @@ const Router = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} />} />
-                <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} deleteResource={deleteResource} />} />
+                <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} />} />
             </Routes>
         </BrowserRouter>
     )

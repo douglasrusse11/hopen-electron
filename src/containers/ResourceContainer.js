@@ -6,7 +6,7 @@ import ResourceDetail from '../components/ResourceDetail';
 import Map from '../components/Map';
 import Form from '../components/Form';
 
-const ResourceContainer = ({user, formData, setFormData, deleteResource}) => {
+const ResourceContainer = ({user, formData, setFormData}) => {
     const [resource, setResource] = useState(null);
     const [displayUpdateForm, setDisplayUpdateForm] = useState(false)
     let { id } = useParams();
@@ -30,6 +30,10 @@ const ResourceContainer = ({user, formData, setFormData, deleteResource}) => {
         setDisplayUpdateForm(false);
         await DataStore.query(Resource, id)
             .then(res => setResource(res))
+    }
+
+    const deleteResource = async (id) => {
+        await DataStore.delete(resource);
     }
 
     return (

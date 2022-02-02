@@ -10,12 +10,11 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
     let { category } = useParams();
 
     useEffect(() => {
-        console.log(category)
         fetchResources();
         const subscription = DataStore.observe(Resource)
                                       .subscribe(() => fetchResources())
         return () => subscription.unsubscribe()
-      }, []);
+      }, [category]);
 
     const fetchResources = () => {
         DataStore.query(Resource, r => r.category("eq", category))
