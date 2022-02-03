@@ -1,39 +1,12 @@
 {
   "function": {
-    "scraper": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
-    "addDataToDB": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "scraper",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        }
-      ]
-    },
     "hopenc485c56aPostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
-  "storage": {
-    "scraper": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    }
-  },
+  "storage": {},
   "api": {
     "hopen": {
       "service": "AppSync",
