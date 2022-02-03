@@ -63,8 +63,8 @@ const Router = () => {
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} />} />
-                <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} />} />
+                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} client={client}/>} />
+                <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} client={client}/>} />
                 <Route path="/seeder" element={<Seeder client={client}/>} />
             </Routes>
         </BrowserRouter>

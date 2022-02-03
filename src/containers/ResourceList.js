@@ -4,7 +4,7 @@ import { Resource } from '../models';
 import { useParams, Link } from 'react-router-dom';
 import Form from '../components/Form';
 
-const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpdateForm}) => {
+const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpdateForm, client}) => {
     const [resourceList, setResourceList] = useState([]);
     const [displayAddNew, setDisplayAddNew] = useState(true);
     let { category } = useParams();
@@ -53,7 +53,7 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
     const displayForm = (style) => {
         return (
             <div style={styles.container}>
-                {user && user.isAdmin && (displayAddNew ? <button onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>Add new</button> : <Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} />)}
+                {user && user.isAdmin && (displayAddNew ? <button onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>Add new</button> : <Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} client={client} />)}
             </div>
         )
     }

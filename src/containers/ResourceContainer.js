@@ -6,7 +6,7 @@ import ResourceDetail from '../components/ResourceDetail';
 import Map from '../components/Map';
 import Form from '../components/Form';
 
-const ResourceContainer = ({user, formData, setFormData}) => {
+const ResourceContainer = ({user, formData, setFormData, client}) => {
     const [resource, setResource] = useState(null);
     const [displayUpdateForm, setDisplayUpdateForm] = useState(false)
     let { id } = useParams();
@@ -42,7 +42,7 @@ const ResourceContainer = ({user, formData, setFormData}) => {
             <>
                 {resource.latlng && <Map resource={resource} />}
                 { displayUpdateForm ?
-                    <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} /> :
+                    <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} client={client} /> :
                     <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
                 }
             </>
