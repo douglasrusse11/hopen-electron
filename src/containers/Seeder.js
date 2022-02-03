@@ -20,7 +20,6 @@ const Seeder = ({client}) => {
             let [category, name, address, phoneNumber, emailAddress, openingHours, description] = splitData[i].split('\t');
             if (category.split(' ').length > 1) {
                 category = category.split(' ')[0];
-                console.log(category)
             }
             const resource = {
                 category: category,
