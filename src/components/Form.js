@@ -17,9 +17,6 @@ const Form = ({onSubmit, formData, setFormData, client}) => {
             })
         } else if (e.target.name === 'address') {
             if (e.target.value && (Date.now() - lastRequest > 500)) {
-                    // fetch(`https://nominatim.openstreetmap.org/?q=${e.target.value}&format=json&limit=10&addressdetails=1&countrycodes=gr`)
-                    //     .then(res => res.json())
-                    //     .then(data => setAddressList(data));
                     client.searchPlaceIndexForText({IndexName: "AthensIndex", Text: e.target.value, FilterCountries: ["GRC"], MaxResults: '10'}, (err, data) => {
                         if (err) console.error(err);
                         if (data) {
@@ -30,7 +27,6 @@ const Form = ({onSubmit, formData, setFormData, client}) => {
                 }
             if (addressList.length !== 0) {
                 setFormData({
-                    // ...formData, [e.target.name]: e.target.value
                     ...formData, [e.target.name]: e.target.value, latlng: [parseFloat(addressList[0].Place.Geometry.Point[1]), parseFloat(addressList[0].Place.Geometry.Point[0])]
                 })
             } else {
