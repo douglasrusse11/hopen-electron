@@ -42,8 +42,6 @@ const Router = () => {
             const userInfo = {username: data.username, isAdmin: data.signInUserSession.idToken.payload['cognito:groups'] && data.signInUserSession.idToken.payload['cognito:groups'].includes('Admin'), ...data.attributes};
             setUser(userInfo);
             const credentials = await Auth.currentCredentials();
-            console.log(credentials)
-            console.log(config.aws_project_region)
             const c = new Location({
                 credentials,
                 region: config.aws_project_region,
