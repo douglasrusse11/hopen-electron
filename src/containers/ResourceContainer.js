@@ -10,7 +10,8 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
     const [resource, setResource] = useState(null);
     const [displayUpdateForm, setDisplayUpdateForm] = useState(false)
     const [userCoords, setUserCoords] = useState(null);
-    let { id } = useParams();
+    const [route, setRoute] = useState(null);
+     let { id } = useParams();
 
     useEffect(() => {
         DataStore.query(Resource, id)
@@ -46,6 +47,25 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
           }
     }, [])
 
+    useEffect(() => {
+        if (resource && userCoords ) {
+            var params = {
+                "CalculatorName": "AthensRouteCalculator",
+                "DeparturePosition": [userCoords[1], userCoords[0]],
+                "DestinationPosition": [resource.latlng[1], resource.latlng[0]],
+                "WaypointPositions": [],
+                "TravelMode": "Walking",
+                "IncludeLegGeometry": true,
+                "DistanceUnit": "Kilometers",
+                "DepartNow": false
+              };
+              client.calculateRoute(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                if (data) setRoute(data.Legs[0].Geometry.LineString.map(a => [a[1], a[0]]));           // successful response
+              });
+        }
+    }, [resource, userCoords])
+
     const updateResource = async (id) => {
         await DataStore.save(Resource.copyOf(resource, updated => {
             updated.category = formData.category;
@@ -70,7 +90,7 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
         <>
         { resource && (
             <>
-                {resource.latlng && <Map resource={resource} userCoords={userCoords} />}
+                {resource.latlng && <Map resource={resource} userCoords={userCoords} route={route} />}
                 { displayUpdateForm ?
                     <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} client={client} /> :
                     <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />

@@ -1,7 +1,7 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from 'react-leaflet';
 import { useState, useEffect } from 'react';
 
-const Map = ({resource, userCoords}) => {
+const Map = ({resource, userCoords, route}) => {
 
     const [mapOptions, setMapOptions] = useState(null)
 
@@ -23,7 +23,7 @@ const Map = ({resource, userCoords}) => {
             })
         }
 
-    }, [])
+    }, [userCoords])
 
 
     return (
@@ -37,11 +37,12 @@ const Map = ({resource, userCoords}) => {
             <Marker position={resource.latlng}>
                 <Popup>
                     {resource.name} <br/>
-                    {resource.style} <br/>
+                    {resource.category} <br/>
                     {resource.address}
                 </Popup>
             </Marker>
             { userCoords && <Marker position={userCoords} />}
+            {route && <Polyline positions={route} />}
             <UpdateMap mapOptions={mapOptions} />
         </MapContainer>
         )}
@@ -52,7 +53,7 @@ const Map = ({resource, userCoords}) => {
 function UpdateMap({ mapOptions }) {
         const map = useMap();
         map.setView(mapOptions.center);
-      
+        map.fitBounds(mapOptions.bounds);
         return null;
     }
 
