@@ -1,16 +1,35 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { useState, useEffect } from 'react';
 
-const Map = ({resource}) => {
+const Map = ({resource, userCoords}) => {
 
-    const style = {
-        height: "300px",
-        width: "100%"
-    };
+    const [mapOptions, setMapOptions] = useState(null)
 
+    useEffect(() => {
+        if (!userCoords) {
+            setMapOptions({
+                center: resource.latlng, 
+                bounds: [resource.latlng.map(r => r-0.001), resource.latlng.map(r => r+0.001)],
+                style: { height: "300px", width: "100%"}
+            })
+        } else {
+            const center = resource.latlng.map((r,i) => (r+userCoords[i])/2);
+            const lats = [resource.latlng[0], userCoords[0]].sort();
+            const lngs = [resource.latlng[1], userCoords[1]].sort();
+            setMapOptions({
+                center: center,
+                bounds: [[lats[0]-0.001, lngs[0]-0.001], [lats[1]+0.001, lngs[1]+0.001]],
+                style: { height: "300px", width: "100%"}
+            })
+        }
+
+    }, [])
 
 
     return (
-        <MapContainer center={resource.latlng} zoom={15} scrollWheelZoom={false} style={style}>
+        <>
+        { mapOptions && (
+        <MapContainer center={mapOptions.center} bounds={mapOptions.bounds} style={mapOptions.style}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -22,14 +41,17 @@ const Map = ({resource}) => {
                     {resource.address}
                 </Popup>
             </Marker>
-            <UpdateMap resource={resource} />
+            { userCoords && <Marker position={userCoords} />}
+            <UpdateMap mapOptions={mapOptions} />
         </MapContainer>
+        )}
+        </>
     );
 }
 
-function UpdateMap({ resource }) {
+function UpdateMap({ mapOptions }) {
         const map = useMap();
-        map.setView([resource.latlng[0], resource.latlng[1]], map.getZoom());
+        map.setView(mapOptions.center);
       
         return null;
     }

@@ -9,11 +9,41 @@ import Form from '../components/Form';
 const ResourceContainer = ({user, formData, setFormData, client}) => {
     const [resource, setResource] = useState(null);
     const [displayUpdateForm, setDisplayUpdateForm] = useState(false)
+    const [userCoords, setUserCoords] = useState(null);
     let { id } = useParams();
 
     useEffect(() => {
         DataStore.query(Resource, id)
             .then(res => setResource(res))
+    }, [])
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+    
+    function success(pos) {
+        setUserCoords([pos.coords.latitude, pos.coords.longitude]);
+    }
+    
+    function errors(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.permissions
+              .query({ name: "geolocation" })
+              .then(function (result) {
+                if (result.state === "granted") {
+                  navigator.geolocation.getCurrentPosition(success);
+                } else if (result.state === "prompt") {
+                  navigator.geolocation.getCurrentPosition(success, errors, options);
+                } else if (result.state === "denied") {
+                }
+              });
+          }
     }, [])
 
     const updateResource = async (id) => {
@@ -40,7 +70,7 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
         <>
         { resource && (
             <>
-                {resource.latlng && <Map resource={resource} />}
+                {resource.latlng && <Map resource={resource} userCoords={userCoords} />}
                 { displayUpdateForm ?
                     <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} client={client} /> :
                     <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
