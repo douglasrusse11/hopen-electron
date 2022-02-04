@@ -41,21 +41,22 @@ const Router = () => {
             const data = await Auth.currentAuthenticatedUser();
             const userInfo = {username: data.username, isAdmin: data.signInUserSession.idToken.payload['cognito:groups'] && data.signInUserSession.idToken.payload['cognito:groups'].includes('Admin'), ...data.attributes};
             setUser(userInfo);
-            const credentials = await Auth.currentCredentials();
-            const c = new Location({
-                credentials,
-                region: config.aws_project_region,
-            });
-            setClient(c);
         } catch (err) {
             setUser(null);
             console.log('error: ', err);
         }
     }
+
+    useEffect(() => {
+        Auth.currentCredentials()
+            .then( credentials => {
+                setClient(new Location({
+                    credentials,
+                    region: config.aws_project_region,
+                }))
+            })
+    }, []);
         
-        const fetchResources = () => {
-            DataStore.query(Resource)
-        }
 
     return (
         <BrowserRouter >
