@@ -9,12 +9,62 @@ import Form from '../components/Form';
 const ResourceContainer = ({user, formData, setFormData, client}) => {
     const [resource, setResource] = useState(null);
     const [displayUpdateForm, setDisplayUpdateForm] = useState(false)
-    let { id } = useParams();
+    const [userCoords, setUserCoords] = useState(null);
+    const [route, setRoute] = useState(null);
+     let { id } = useParams();
 
     useEffect(() => {
         DataStore.query(Resource, id)
             .then(res => setResource(res))
     }, [])
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+    
+    function success(pos) {
+        setUserCoords([pos.coords.latitude, pos.coords.longitude]);
+    }
+    
+    function errors(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.permissions
+              .query({ name: "geolocation" })
+              .then(function (result) {
+                if (result.state === "granted") {
+                  navigator.geolocation.getCurrentPosition(success);
+                } else if (result.state === "prompt") {
+                  navigator.geolocation.getCurrentPosition(success, errors, options);
+                } else if (result.state === "denied") {
+                }
+              });
+          }
+    }, [])
+
+    useEffect(() => {
+        if (resource && userCoords ) {
+            var params = {
+                "CalculatorName": "AthensRouteCalculator",
+                "DeparturePosition": [userCoords[1], userCoords[0]],
+                "DestinationPosition": [resource.latlng[1], resource.latlng[0]],
+                "WaypointPositions": [],
+                "TravelMode": "Walking",
+                "IncludeLegGeometry": true,
+                "DistanceUnit": "Kilometers",
+                "DepartNow": false
+              };
+              client.calculateRoute(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                if (data) setRoute(data.Legs[0].Geometry.LineString.map(a => [a[1], a[0]]));           // successful response
+              });
+        }
+    }, [resource, userCoords])
 
     const updateResource = async (id) => {
         await DataStore.save(Resource.copyOf(resource, updated => {
@@ -40,7 +90,7 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
         <>
         { resource && (
             <>
-                {resource.latlng && <Map resource={resource} />}
+                {resource.latlng && <Map resource={resource} userCoords={userCoords} route={route} />}
                 { displayUpdateForm ?
                     <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} client={client} /> :
                     <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
