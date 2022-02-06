@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
 import Location from 'aws-sdk/clients/location';
 import Header from '../components/Header';
-import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 import Home from './Home';
 import ResourceList from './ResourceList';
 import ResourceContainer from './ResourceContainer';
@@ -71,6 +71,7 @@ const Router = () => {
                 <Route path="/seeder" element={<Seeder client={client}/>} />
             </Routes>
             </div>
+            <Footer />
         </BrowserRouter>
     )
 }
