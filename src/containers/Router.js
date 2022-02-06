@@ -2,14 +2,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
 import Location from 'aws-sdk/clients/location';
-import {DataStore} from '@aws-amplify/datastore';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Home from './Home';
 import ResourceList from './ResourceList';
 import ResourceContainer from './ResourceContainer';
+import Menu from '../components/Menu';
 import Seeder from './Seeder';
-import { Resource } from '../models';
 import config from '../aws-exports';
 
 const initialState = {
@@ -62,13 +61,16 @@ const Router = () => {
     return (
         <BrowserRouter >
             <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
-            <Nav />
+            <div style={{display: "flex"}}>
+            {displayMenu && <Menu />}
+            {/* <Nav /> */}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} client={client}/>} />
                 <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} client={client}/>} />
                 <Route path="/seeder" element={<Seeder client={client}/>} />
             </Routes>
+            </div>
         </BrowserRouter>
     )
 }
