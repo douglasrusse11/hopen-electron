@@ -166,7 +166,7 @@ const ResourceList = ({user, client}) => {
         <div style={{display: "flex", flexDirection: "column", width: "100%", height: "100%"}}>
             <Nav />
             <div style={{display: "flex", height: "100%", width: "100%"}}>
-                {resourceList.length !== 0 && (selectedResource.id === 0 ? <Map resources={resourceList} userCoords={null} route={null} /> : <Map resources={[selectedResource]} userCoords={userCoords} route={route} />)}
+                {resourceList.length !== 0 && (selectedResource.id === 0 ? <Map resources={resourceList} userCoords={null} route={null} setSelectedResource={setSelectedResource} /> : <Map resources={[selectedResource]} userCoords={userCoords} route={route} setSelectedResource={setSelectedResource} />)}
                 <div style={styles.resources} >
                     {(resourceList && resourceList.length !== 0) ? displayResources() : <h3>No resources to display for {category}.</h3>}
                     {displayForm()}

@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from 'react-leaflet';
 import { useState, useEffect } from 'react';
 
-const Map = ({resources, userCoords, route}) => {
+const Map = ({resources, userCoords, route, setSelectedResource}) => {
 
     const [mapOptions, setMapOptions] = useState(null)
 
@@ -51,6 +51,7 @@ const Map = ({resources, userCoords, route}) => {
                         {resource.name} <br/>
                         {resource.category} <br/>
                         {resource.address}
+                        {resources.length > 1 && <><br/> <span style={{textDecoration: "underline", color: "blue"}} onClick={() => setSelectedResource(resource)}>More info...</span></>}
                     </Popup>
                 </Marker>
                 )
