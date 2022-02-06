@@ -27,6 +27,7 @@ const Router = () => {
     const [user, setUser] = useState(null);
     const [formData, setFormData] = useState(initialState);
     const [client, setClient] = useState(null);
+    const [displayMenu, setDisplayMenu] = useState(false)
 
     useEffect(() => {
         getUser()
@@ -60,7 +61,7 @@ const Router = () => {
 
     return (
         <BrowserRouter >
-            <Header user={user} />
+            <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
