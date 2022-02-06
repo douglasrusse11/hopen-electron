@@ -90,7 +90,7 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
         <>
         { resource && (
             <>
-                {resource.latlng && <Map resource={resource} userCoords={userCoords} route={route} />}
+                {resource.latlng && <Map resources={[resource]} userCoords={userCoords} route={route} />}
                 { displayUpdateForm ?
                     <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} client={client} /> :
                     <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
