@@ -90,7 +90,7 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
     return (
         <>
         { resource && (
-            <div style={{display: "flex", flexDirection: "column"}}>
+            <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
                 <Nav />
                 {resource.latlng && <Map resources={[resource]} userCoords={userCoords} route={route} />}
                 { displayUpdateForm ?

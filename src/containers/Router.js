@@ -61,7 +61,7 @@ const Router = () => {
     return (
         <BrowserRouter >
             <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
-            <div style={{display: "flex"}}>
+            <div style={{display: "flex", width: "100%"}}>
             {displayMenu && <Menu />}
             {/* <Nav /> */}
             <Routes>

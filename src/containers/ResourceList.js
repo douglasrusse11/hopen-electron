@@ -72,7 +72,7 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
     }
 
     return (
-        <div style={{display: "flex", flexDirection: "column"}}>
+        <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
             <Nav />
             <div style={{display: "flex"}}>
                 {resourceList.length !== 0 && <Map resources={resourceList} userCoords={null} route={null} />}

@@ -28,6 +28,7 @@ const Nav = () => {
 
 const navStyle = {
     display: 'flex',
+    width: "100%"
 };
 const linkStyle = {
     textDecoration: 'none'
