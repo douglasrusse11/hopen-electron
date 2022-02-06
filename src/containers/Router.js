@@ -11,20 +11,8 @@ import Menu from '../components/Menu';
 import Seeder from './Seeder';
 import config from '../aws-exports';
 
-const initialState = {
-    category: '',
-    name: '',
-    address: '',
-    description: '',
-    phoneNumber: '',
-    emailAddress: '',
-    openingHours: '',
-    latlng: [0, 0]
-};
-
 const Router = () => {
     const [user, setUser] = useState(null);
-    const [formData, setFormData] = useState(initialState);
     const [client, setClient] = useState(null);
     const [displayMenu, setDisplayMenu] = useState(false)
 
@@ -65,8 +53,8 @@ const Router = () => {
             {displayMenu && <Menu />}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} client={client}/>} />
-                <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} client={client}/>} />
+                <Route path="/resources/bycategory/:category" element={<ResourceList user={user} client={client}/>} />
+                {/* <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} client={client}/>} /> */}
                 <Route path="/seeder" element={<Seeder client={client}/>} />
             </Routes>
             </div>
