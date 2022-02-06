@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
 import { Resource } from '../models';
 import { useParams, Link } from 'react-router-dom';
+import Map from '../components/Map';
 import Form from '../components/Form';
 
 const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpdateForm, client}) => {
@@ -71,6 +72,7 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
 
     return (
         <>
+        {resourceList.length !== 0 && <Map resources={resourceList} userCoords={null} route={null} />}
         {(resourceList && resourceList.length !== 0) ? displayResources() : <h3>No resources to display for {category}.</h3>}
         {displayForm()}
         </>
