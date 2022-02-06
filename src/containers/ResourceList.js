@@ -110,8 +110,14 @@ const ResourceList = ({user, client}) => {
 
     const displayResources = () => {
         return resourceList.map(resource => (
-            <div key={resource.id}>
-            <div style={styles.resource} >
+            <>
+            { displayUpdateForm.id === resource.id && displayUpdateForm.display === true ? 
+                <>
+                <Form onSubmit={() => updateResource(resource.id)} formData={formData} setFormData={setFormData} />
+                <button onClick={() => setDisplayUpdateForm({id: 0, display: false})}>Close</button>
+                </>
+            : 
+            <div key={resource.id} style={styles.resource} >
                 <div style={{width: "80%"}} onClick={() => {if (selectedResource.id === resource.id) {setSelectedResource({id: 0})} else {setSelectedResource(resource)}}}>
                     <h3 style={styles.heading}>{resource.name}</h3>
                     <h4 style={styles.heading}>{resource.category}</h4>
@@ -128,25 +134,21 @@ const ResourceList = ({user, client}) => {
                 <div style={{width: "48px"}}>
                 { user && user.isAdmin && (
                     <>
-                        <span className="material-icons" style={styles.button} onClick={() => { setFormData({...resource}); setDisplayAddNew(true); setDisplayUpdateForm({id: resource.id, display: true})}}>edit</span>
-                        <span className="material-icons" style={styles.button} onClick={() => {deleteResource(resource.id); setSelectedResource({id: 0})}}>delete</span>
+                        <span className="material-icons" onClick={() => { setFormData({...resource}); setDisplayAddNew(true); setDisplayUpdateForm({id: resource.id, display: true})}}>edit</span>
+                        <span className="material-icons" onClick={() => {deleteResource(resource.id); setSelectedResource({id: 0})}}>delete</span>
                     </>
                 )}
                 </div>
             </div>
-                {
-                    resource.id === displayUpdateForm.id && displayUpdateForm.display === true && (
-                        <Form onSubmit={() => updateResource(resource.id)} formData={formData} setFormData={setFormData} />
-                    )
-                }
-          </div>  
+            }
+            </>
         ))
     }
 
     const displayForm = (style) => {
         return (
             <div style={styles.container}>
-                {user && user.isAdmin && (displayAddNew ? <button onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>+ Add new</button> : <Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} client={client} />)}
+                {user && user.isAdmin && (displayAddNew ? <button style={styles.button} onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>+ Add new</button> : <><Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} client={client} /><button style={{width: "100%"}} onClick={() => setDisplayAddNew(true)}>Close</button></>)}
             </div>
         )
     }
@@ -194,7 +196,8 @@ const styles = {
         color: 'whitesmoke'
     },
     button: {
-        height: 20
+        height: 20,
+        marginLeft: 20
     }
 
 }
