@@ -28,7 +28,8 @@ const Nav = () => {
 
 const navStyle = {
     display: 'flex',
-    width: "100%"
+    width: "100%",
+    backgroundColor: "#aaabb8"
 };
 const linkStyle = {
     textDecoration: 'none'

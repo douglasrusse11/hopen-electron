@@ -58,6 +58,7 @@ const styles = {
     container: {
         width: '100%',
         height: '6vh',
+        backgroundColor: '#25274d'
     },
     headings: {
         width: '100%',
@@ -67,7 +68,7 @@ const styles = {
     heading: {
         fontSize: 42,
         margin: 0,
-        color: 'black',
+        color: 'whitesmoke',
         padding: '0px 10px 0px 10px'
     }
 }
