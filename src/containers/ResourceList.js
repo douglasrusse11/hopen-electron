@@ -4,6 +4,7 @@ import { Resource } from '../models';
 import { useParams, Link } from 'react-router-dom';
 import Map from '../components/Map';
 import Form from '../components/Form';
+import Nav from '../components/Nav';
 
 const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpdateForm, client}) => {
     const [resourceList, setResourceList] = useState([]);
@@ -71,11 +72,16 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
     }
 
     return (
-        <>
-        {resourceList.length !== 0 && <Map resources={resourceList} userCoords={null} route={null} />}
-        {(resourceList && resourceList.length !== 0) ? displayResources() : <h3>No resources to display for {category}.</h3>}
-        {displayForm()}
-        </>
+        <div style={{display: "flex", flexDirection: "column"}}>
+            <Nav />
+            <div style={{display: "flex"}}>
+                {resourceList.length !== 0 && <Map resources={resourceList} userCoords={null} route={null} />}
+                <div style={styles.resources} >
+                    {(resourceList && resourceList.length !== 0) ? displayResources() : <h3>No resources to display for {category}.</h3>}
+                    {displayForm()}
+                </div>
+            </div>
+        </div>
     )
 }
 
@@ -86,6 +92,10 @@ const styles = {
         paddingLeft: 20,
         display: 'flex',
         justifyContent: 'space-between'
+    },
+    resources: {
+        display: "flex",
+        flexDirection: "column"
     },
     heading: {
         margin: 0,
