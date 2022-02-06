@@ -27,7 +27,6 @@ const Map = ({resources, userCoords, route}) => {
             const center = [resources.reduce((acc, cur) => acc + cur.latlng[0], 0)/resources.length, resources.reduce((acc, cur) => acc + cur.latlng[1], 0)/resources.length];
             const lats = resources.map(r => r.latlng[0]).sort();
             const lngs = resources.map(r => r.latlng[1]).sort();
-            console.log("lats: ", lats, "lngs: ", lngs)
             setMapOptions({
                 center: center,
                 bounds: [[lats[0]-0.001, lngs[0]-0.001], [lats[resources.length-1]+0.001, lngs[resources.length-1]+0.001]],
