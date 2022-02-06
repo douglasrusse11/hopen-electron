@@ -33,7 +33,7 @@ const Header = function({user, displayMenu, setDisplayMenu}) {
 const styles = {
     container: {
         width: '100%',
-        height: '50px',
+        height: '6vh',
     },
     headings: {
         width: '100%',

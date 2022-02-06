@@ -61,9 +61,8 @@ const Router = () => {
     return (
         <BrowserRouter >
             <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
-            <div style={{display: "flex", width: "100%"}}>
+            <div style={{display: "flex", width: "100%", height: "88vh"}}>
             {displayMenu && <Menu />}
-            {/* <Nav /> */}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/resources/bycategory/:category" element={<ResourceList user={user} formData={formData} setFormData={setFormData} initialState={initialState} client={client}/>} />

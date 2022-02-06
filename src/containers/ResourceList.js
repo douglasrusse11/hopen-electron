@@ -72,9 +72,9 @@ const ResourceList = ({user, formData, setFormData, initialState, setDisplayUpda
     }
 
     return (
-        <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+        <div style={{display: "flex", flexDirection: "column", width: "100%", height: "100%"}}>
             <Nav />
-            <div style={{display: "flex"}}>
+            <div style={{display: "flex", height: "100%", widht: "100%"}}>
                 {resourceList.length !== 0 && <Map resources={resourceList} userCoords={null} route={null} />}
                 <div style={styles.resources} >
                     {(resourceList && resourceList.length !== 0) ? displayResources() : <h3>No resources to display for {category}.</h3>}

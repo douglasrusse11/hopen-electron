@@ -11,7 +11,7 @@ const Map = ({resources, userCoords, route}) => {
                 setMapOptions({
                     center: resources[0].latlng, 
                     bounds: [resources[0].latlng.map(r => r-0.001), resources[0].latlng.map(r => r+0.001)],
-                    style: { height: "300px", width: "100%"}
+                    style: { height: "100%", width: "100%"}
                 })
             } else {
                 const center = resources[0].latlng.map((r,i) => (r+userCoords[i])/2);
@@ -20,7 +20,7 @@ const Map = ({resources, userCoords, route}) => {
                 setMapOptions({
                     center: center,
                     bounds: [[lats[0]-0.001, lngs[0]-0.001], [lats[1]+0.001, lngs[1]+0.001]],
-                    style: { height: "300px", width: "100%"}
+                    style: { height: "100%", width: "100%"}
                 })
             }
         } else {
@@ -30,7 +30,7 @@ const Map = ({resources, userCoords, route}) => {
             setMapOptions({
                 center: center,
                 bounds: [[lats[0]-0.001, lngs[0]-0.001], [lats[resources.length-1]+0.001, lngs[resources.length-1]+0.001]],
-                style: { height: "300px", width: "100%"}
+                style: { height: "100%", width: "100%"}
             })
         }
 
