@@ -49,7 +49,7 @@ const Header = function({user, displayMenu, setDisplayMenu}) {
             onRequestClose={() => setDisplayLogin(false)}
             style={customStyles}
             contentLabel="Example Modal"
-        ><Authenticator/ ></Modal>
+        ><Authenticator/></Modal>
         </>
     )
 }
