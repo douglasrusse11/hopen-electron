@@ -5,6 +5,7 @@ import { Resource } from '../models';
 import ResourceDetail from '../components/ResourceDetail';
 import Map from '../components/Map';
 import Form from '../components/Form';
+import Nav from '../components/Nav';
 
 const ResourceContainer = ({user, formData, setFormData, client}) => {
     const [resource, setResource] = useState(null);
@@ -89,13 +90,14 @@ const ResourceContainer = ({user, formData, setFormData, client}) => {
     return (
         <>
         { resource && (
-            <>
-                {resource.latlng && <Map resource={resource} userCoords={userCoords} route={route} />}
+            <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+                <Nav />
+                {resource.latlng && <Map resources={[resource]} userCoords={userCoords} route={route} />}
                 { displayUpdateForm ?
                     <Form formData={formData} setFormData={setFormData} onSubmit={() => updateResource(resource.id)} client={client} /> :
                     <ResourceDetail resource={resource} user={user} setFormData={setFormData} setDisplayUpdateForm={setDisplayUpdateForm} deleteResource={deleteResource}  />
                 }
-            </>
+            </div>
         )}
         </>
     )

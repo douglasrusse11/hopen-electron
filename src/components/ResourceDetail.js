@@ -11,7 +11,7 @@ const ResourceDetail = ({resource, user, setFormData, setDisplayUpdateForm, dele
                 <p>Phone Number: {resource.phoneNumber}</p>
                 <p>Email Address: <a href={`mailto:${resource.emailAddress}`}>{resource.emailAddress}</a></p>
                 <p>Opening Hours: {resource.openingHours}</p>
-                <p>{resource.decription}</p>
+                <p>{resource.description}</p>
             </div>
             <div>
             { user && user.isAdmin && (

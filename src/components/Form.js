@@ -42,7 +42,7 @@ const Form = ({onSubmit, formData, setFormData, client}) => {
     }
 
     return (
-        <>
+        <div style={{display: "flex", flexDirection: "column"}}>
             <select name="category" onChange={onChange} defaultValue={formData.category} >
                     { Object.values(ResourceType).map((resourceType, index) => (
                             <option key={`resourceOption_${index}`} value={resourceType} >{resourceType}</option>
@@ -62,7 +62,7 @@ const Form = ({onSubmit, formData, setFormData, client}) => {
             <input type="number" placeholder="Latitude" name="lat" value={formData.latlng[0]} step="0.00001" onChange={onChange} />
             <input type="number" placeholder="Longitude" name="lng" value={formData.latlng[1]} step="0.00001" onChange={onChange} />
             <button onClick={onSubmit}>Submit</button>
-        </>
+        </div>
     )
 }
 

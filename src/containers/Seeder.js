@@ -45,10 +45,10 @@ const Seeder = ({client}) => {
 
 
     return (
-        <>
+        <div style={{display: "flex", flexDirection: "column"}}>
             <textarea name="data" onChange={onChange} style={{width: 800, height: 600}} />
             <button onClick={processData}>Seed DB</button>
-        </>
+        </div>
     )
 
 }
