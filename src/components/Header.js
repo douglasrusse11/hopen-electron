@@ -40,7 +40,7 @@ const Header = function({user, displayMenu, setDisplayMenu}) {
                     <h1 style={styles.heading}>HopeN</h1>
                 </Link>
                 </div>
-                { user ? <h1 style={styles.heading} onClick={() => {Auth.signOut(); setDisplayLogin(false)}}>Sign Out</h1> : <h1 style={styles.heading} onClick={() => setDisplayLogin(!displayLogin)}>Sign In</h1> }
+                { user ? <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => {Auth.signOut(); setDisplayLogin(false)}}>Sign Out</h1> : <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => setDisplayLogin(!displayLogin)}>Sign In</h1> }
             </div>
         </div>
         <Modal
@@ -58,7 +58,8 @@ const styles = {
     container: {
         width: '100%',
         height: '6vh',
-        backgroundColor: '#25274d'
+        backgroundColor: '#0F1626',
+        padding: '1vh 0vh 1vh 0vh'
     },
     headings: {
         width: '100%',
@@ -68,8 +69,9 @@ const styles = {
     heading: {
         fontSize: 42,
         margin: 0,
-        color: 'whitesmoke',
-        padding: '0px 10px 0px 10px'
+        color: '#F5F5F5',
+        padding: '0px 10px 0px 10px',
+        letterSpacing: '3px'
     }
 }
 
