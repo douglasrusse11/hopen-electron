@@ -11,6 +11,7 @@ import Menu from '../components/Menu';
 import Seeder from './Seeder';
 import config from '../aws-exports';
 import News from './News';
+import ContactForm from './ContactForm';
 
 const Router = () => {
     const [user, setUser] = useState(null);
@@ -59,6 +60,7 @@ const Router = () => {
                 <Route path="/seeder" element={<Seeder client={client}/>} />
             </Routes>
             </div>
+            <ContactForm/>
             <News/>
             <Footer />
         </BrowserRouter>
