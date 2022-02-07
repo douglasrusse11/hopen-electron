@@ -33,11 +33,20 @@ const ResourceList = ({user, client}) => {
         const subscription = DataStore.observe(Resource)
                                       .subscribe(() => fetchResources())
         return () => subscription.unsubscribe()
-      }, [category]);
+      }, [category, userCoords]);
 
     const fetchResources = () => {
         DataStore.query(Resource, r => r.category("eq", category))
-            .then(data => setResourceList(data))
+            .then(resources=> {
+                if (userCoords) {
+                    resources.sort((current, next) => calculateDistance(current.latlng) - calculateDistance(next.latlng));
+                }
+                setResourceList(resources)
+            })
+    }
+
+    const calculateDistance = (resourceCoords) => {
+        return (resourceCoords[0]-userCoords[0])**2 + (resourceCoords[1]-userCoords[1])**2; 
     }
 
     const options = {
