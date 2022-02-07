@@ -46,6 +46,10 @@
         "hopenc485c56aPostConfirmation": {
           "deploymentBucketName": "amplify-hopen-base-94448-deployment",
           "s3Key": "amplify-builds/hopenc485c56aPostConfirmation-6b4d545745614f703554-build.zip"
+        },
+        "formfunction": {
+          "deploymentBucketName": "amplify-hopen-base-94448-deployment",
+          "s3Key": "amplify-builds/formfunction-537853544358504e5730-build.zip"
         }
       }
     }
