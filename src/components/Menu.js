@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Menu = ({user}) => {
+
+    const {t, i18n} = useTranslation();
 
     return (
         <div style={menuStyle}>
             <Link style={{textDecoration: "none", color: '#F5F5F5'}} to="/resources/bycategory/Accomodation">
-                <h3>Resources</h3>
+                <h3>{t('home.resources')}</h3>
             </Link>
             { user && user.isAdmin && 
                 <Link style={{textDecoration: "none", color: "whitesmoke"}} to="/seeder">

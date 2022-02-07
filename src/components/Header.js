@@ -4,6 +4,7 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import '@aws-amplify/ui-react/styles.css';
+import { useTranslation, Trans } from 'react-i18next';
 
 const customStyles = {
     content: {
@@ -17,7 +18,16 @@ const customStyles = {
   };
 
 Modal.setAppElement('#root');
+
+const lngs = {
+  en: { nativeName: 'English' },
+  ar: { nativeName: 'Arabic' }
+};
+
 const Header = function({user, displayMenu, setDisplayMenu}) {
+
+    const {t, i18n} = useTranslation();
+
     let subtitle;
 
     const [displayLogin, setDisplayLogin] = useState(false);
@@ -40,7 +50,14 @@ const Header = function({user, displayMenu, setDisplayMenu}) {
                     <h1 style={styles.heading}>HopeN</h1>
                 </Link>
                 </div>
-                { user ? <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => {Auth.signOut(); setDisplayLogin(false)}}>Sign Out</h1> : <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => setDisplayLogin(!displayLogin)}>Sign In</h1> }
+                <div>
+                    {Object.keys(lngs).map((lng) => (
+                        <button key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() => i18n.changeLanguage(lng)}>
+                            {lngs[lng].nativeName}
+                        </button>
+                    ))}
+                </div>
+                { user ? <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => {Auth.signOut(); setDisplayLogin(false)}}>{t('home.signout')}</h1> : <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => setDisplayLogin(!displayLogin)}>{t('home.signin')}</h1> }
             </div>
         </div>
         <Modal
@@ -59,7 +76,6 @@ const styles = {
         width: '100%',
         height: '6vh',
         backgroundColor: '#0F1626',
-        padding: '1vh 0vh 1vh 0vh'
     },
     headings: {
         width: '100%',

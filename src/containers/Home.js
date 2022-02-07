@@ -1,11 +1,14 @@
 import athens from './athens.jpg'
+import { useTranslation, Trans } from 'react-i18next';
 
 const Home = () => {
 
+    const {t, i18n} = useTranslation();
+
     return (
         <div style={styles.container}>
-            <h2 style={styles.homeHeader}>Welcome to HopeN</h2>
-            <p style={styles.homeText}>Thank you for visiting us! If you're looking for information on topics like asylum procedures, work permissions, registering children for school, or finding a doctor, you're in the right place. Our project aims to help refugees in Greece access services and exercise their rights.</p>
+            <h2 style={styles.homeHeader}>{t('home.homeHeader')}</h2>
+            <p style={styles.homeText}>{t('home.homeText')}</p>
             <img src={athens} alt="Athens" style={styles.image}/>
         </div>
     )
