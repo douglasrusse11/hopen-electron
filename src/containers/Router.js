@@ -10,6 +10,7 @@ import ResourceContainer from './ResourceContainer';
 import Menu from '../components/Menu';
 import Seeder from './Seeder';
 import config from '../aws-exports';
+import News from './News';
 
 const Router = () => {
     const [user, setUser] = useState(null);
@@ -58,6 +59,7 @@ const Router = () => {
                 <Route path="/seeder" element={<Seeder client={client}/>} />
             </Routes>
             </div>
+            <News/>
             <Footer />
         </BrowserRouter>
     )
