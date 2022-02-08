@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ResourceType } from '../models';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Nav = () => {
 
+    const {t, i18n} = useTranslation();
+
     const categoryMap = {
-        Accomodation: <><span className="material-icons">house</span>  Accomodation</>,
-        Food: <><span className="material-icons">local_dining</span>  Food</>,
-        Clothing: <><span className="material-icons">checkroom</span>   Clothing</>,
-        Health: <><span className="material-icons">medical_services</span>  Health Services</>,
-        Sport: <><span className="material-icons">sports_soccer</span>  Sport Activities</>,
-        Legal: <><span className="material-icons">gavel</span>  Legal Services</>,
-        Education: <><span className="material-icons">school</span>  Education</>
+        Accomodation: <><span className="material-icons">house</span>  {t('nav.accommodation')}</>,
+        Food: <><span className="material-icons">local_dining</span>  {t('nav.food')}</>,
+        Clothing: <><span className="material-icons">checkroom</span>   {t('nav.clothing')}</>,
+        Health: <><span className="material-icons">medical_services</span>  {t('nav.health')}</>,
+        Sport: <><span className="material-icons">sports_soccer</span>  {t('nav.sports')}</>,
+        Legal: <><span className="material-icons">gavel</span>  {t('nav.legal')}</>,
+        Education: <><span className="material-icons">school</span>  {t('nav.education')}</>
     }
 
     return (

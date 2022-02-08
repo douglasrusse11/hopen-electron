@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 
 async function searchNews(q) {
@@ -16,6 +17,7 @@ async function searchNews(q) {
 }
 
 function News() {
+  const {t, i18n} = useTranslation();
   const [query, setQuery] = React.useState("docker");
   const [list, setList] = React.useState(null);
 
@@ -33,13 +35,13 @@ function News() {
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-        <button>Search</button>
+        <button>{t('contact.search')}</button>
       </form>
 
       {!list
         ? null
         : list.length === 0
-          ? <p><i>No results</i></p>
+          ? <p><i>{t('contact.noresults')}</i></p>
           : <ul>
             {list.map((item, i) => (
               <Item key={i} item={item} />

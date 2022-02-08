@@ -3,6 +3,7 @@ import { API } from 'aws-amplify';
 // import { Typography, AppBar, Card, CardAcions, CardContent, CardMedia, CssBaseline, Grid, Container, Toolbar, Button, Form } from '@material-ui/core'
 // import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import {Container, Button, Form} from 'react-bootstrap';
+import { useTranslation, Trans } from 'react-i18next';
 
 import awsExports from "../aws-exports";
 Amplify.configure(awsExports);
@@ -29,25 +30,29 @@ function updateFormState(key, value) {
 }
 
 const ContactForm = () => {
+
+  const {t, i18n} = useTranslation();
+
+
   return (
     <Container>
     <div>
-      <h3>Get in touch</h3>
+      <h3>{t('contact.intro')}</h3>
       <br/>
         <Form>
           <Form.Group>
-            <Form.Label>Name</Form.Label>
-            <Form.Control placeholder="Name" onChange={e => updateFormState('name', e.target.value)} />
+            <Form.Label>{t('contact.name')}</Form.Label>
+            <Form.Control placeholder={t('contact.name')} onChange={e => updateFormState('name', e.target.value)} />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
-            <Form.Control placeholder="Email" onChange={e => updateFormState('email', e.target.value)} />
+            <Form.Label>{t('contact.email')}</Form.Label>
+            <Form.Control placeholder={t('contact.email')} onChange={e => updateFormState('email', e.target.value)} />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Message</Form.Label>
-            <Form.Control placeholder="Message" onChange={e => updateFormState('message', e.target.value)} />
+            <Form.Label>{t('contact.message')}</Form.Label>
+            <Form.Control placeholder={t('contact.message')} onChange={e => updateFormState('message', e.target.value)} />
           </Form.Group>
-          <Button onClick={addContact}>Send a message</Button>
+          <Button onClick={addContact}>{t('contact.send')}</Button>
         </Form>
       </div>
     </Container>

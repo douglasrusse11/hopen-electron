@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { ResourceType } from '../models';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Form = ({onSubmit, formData, setFormData, client}) => {
 
     const [addressList, setAddressList] = useState([])
     const [lastRequest, setLastRequest] = useState(Date.now());
+    const {t, i18n} = useTranslation();
 
     const onChange = (e) => {
         if (e.target.name === 'lat') {
@@ -61,7 +63,7 @@ const Form = ({onSubmit, formData, setFormData, client}) => {
             <input type="text" placeholder="Opening Hours" name="openingHours" value={formData.openingHours} onChange={onChange} />
             <input type="number" placeholder="Latitude" name="lat" value={formData.latlng[0]} step="0.00001" onChange={onChange} />
             <input type="number" placeholder="Longitude" name="lng" value={formData.latlng[1]} step="0.00001" onChange={onChange} />
-            <button onClick={onSubmit}>Submit</button>
+            <button onClick={onSubmit}>{t('form.submit')}</button>
         </div>
     )
 }
