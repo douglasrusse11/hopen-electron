@@ -50,17 +50,17 @@ const Form = ({onSubmit, formData, setFormData, client}) => {
                             <option key={`resourceOption_${index}`} value={resourceType} >{resourceType}</option>
                     ))}
             </select>
-            <input type="text" placeholder="Name" name="name" value={formData.name} onChange={onChange} />
-            <input type="search" placeholder="Address" name="address" list="addresses" value={formData.address} onChange={onChange} autoComplete="true"/>
+            <input type="text" placeholder={t('form.name')} name="name" value={formData.name} onChange={onChange} />
+            <input type="search" placeholder={t('form.address')} name="address" list="addresses" value={formData.address} onChange={onChange} autoComplete="true"/>
             <datalist id="addresses">
                 { addressList.map((address, index) => (
                     <option value={address.Place.Label} key={`address_${index}`}  />
                 ))}
             </datalist>
-            <input type="text" placeholder="Description" name="description" value={formData.description} onChange={onChange} />
-            <input type="text" placeholder="Phone Number" name="phoneNumber" value={formData.phoneNumber} onChange={onChange} />
-            <input type="text" placeholder="Email Address" name="emailAddress" value={formData.emailAddress} onChange={onChange} />
-            <input type="text" placeholder="Opening Hours" name="openingHours" value={formData.openingHours} onChange={onChange} />
+            <input type="text" placeholder={t('form.description')} name="description" value={formData.description} onChange={onChange} />
+            <input type="text" placeholder={t('form.phone')} name="phoneNumber" value={formData.phoneNumber} onChange={onChange} />
+            <input type="text" placeholder={t('form.email')} name="emailAddress" value={formData.emailAddress} onChange={onChange} />
+            <input type="text" placeholder={t('form.hours')} name="openingHours" value={formData.openingHours} onChange={onChange} />
             <input type="number" placeholder="Latitude" name="lat" value={formData.latlng[0]} step="0.00001" onChange={onChange} />
             <input type="number" placeholder="Longitude" name="lng" value={formData.latlng[1]} step="0.00001" onChange={onChange} />
             <button onClick={onSubmit}>{t('form.submit')}</button>
