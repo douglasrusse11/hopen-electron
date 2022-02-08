@@ -19,7 +19,8 @@ i18n
                 signout: 'Sign Out',
                 homeHeader: 'Welcome to HopeN',
                 homeText: "Thank you for visiting us! If you're looking for information on topics like asylum procedures, work permissions, registering children for school, or finding a doctor, you're in the right place. Our project aims to help refugees in Greece access services and exercise their rights.",
-                resources: "Resources"
+                resources: "Resources",
+                db: "Seed DB"
             },
             contact: {
                 intro: "Get in touch",
@@ -27,7 +28,8 @@ i18n
                 email: "Email",
                 message: "Message",
                 send: "Send a message",
-                search: "Search"
+                search: "Search",
+                noresults: "No results"
             },
             nav: {
                 accommodation: "Accommodation",
@@ -37,7 +39,13 @@ i18n
                 sports: "Sport Activities",
                 legal: "Legal Services",
                 education: "Education"
-              }
+              },
+            form: {
+                add: "+ Add new",
+                close: "Close",
+                noresource: "No resources to display for ",
+                submit: "Submit"
+            }
         }
       },
       ar: {
@@ -47,7 +55,8 @@ i18n
                 signout: 'خروج',
                 homeHeader: 'مرحبًا بكم في HopeN',
                 homeText: "شكرا لزيارتك دليل اللاجئ! إذا كنت تبحث عن معلومات حول مواضيع مثل إجراءات اللجوء ، أو أذونات العمل ، أو تسجيل الأطفال في المدرسة ، أو العثور على طبيب ، فأنت في المكان الصحيح. يهدف مشروعنا إلى مساعدة اللاجئين في اليونان على الوصول إلى الخدمات وممارسة حقوقهم.",
-                resources: "مصادر"
+                resources: "مصادر",
+                db: "ديسيبل البذور"
               },
               contact: {
                 intro: "ابقى على تواصل",
@@ -55,7 +64,8 @@ i18n
                 email: "بريد الالكتروني",
                 message: "رسالة",
                 send: "ارسل رسالة",
-                search: "بحث"
+                search: "بحث",
+                noresults: "لا نتائج"
               },
               nav: {
                 accommodation: "إقامة",
@@ -65,7 +75,13 @@ i18n
                 sports: "نشاطات رياضية",
                 legal: "خدمات قانونية",
                 education: "تعليم"
-              }
+              },
+            form: {
+                add: "+ اضافة جديد",
+                close: "غلق",
+                noresource: "لا توجد موارد لعرضها ",
+                submit: "إرسال"
+            }
           }
       }
     }

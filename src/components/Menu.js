@@ -12,7 +12,7 @@ const Menu = ({user}) => {
             </Link>
             { user && user.isAdmin && 
                 <Link style={{textDecoration: "none", color: "whitesmoke"}} to="/seeder">
-                    <h3>Seed DB</h3>
+                    <h3>{t('home.db')}</h3>
                 </Link>
             }
         </div>

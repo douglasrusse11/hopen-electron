@@ -41,7 +41,7 @@ function News() {
       {!list
         ? null
         : list.length === 0
-          ? <p><i>No results</i></p>
+          ? <p><i>{t('contact.noresults')}</i></p>
           : <ul>
             {list.map((item, i) => (
               <Item key={i} item={item} />

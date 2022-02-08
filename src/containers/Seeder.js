@@ -2,8 +2,11 @@ import {useState} from 'react';
 import {DataStore, Predicates} from '@aws-amplify/datastore';
 import {Resource} from '../models';
 import {withAuthenticator} from '@aws-amplify/ui-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Seeder = ({client}) => {
+
+    const {t, i18n} = useTranslation();
 
     const [data, setData] = useState(null)
 
@@ -47,7 +50,7 @@ const Seeder = ({client}) => {
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
             <textarea name="data" onChange={onChange} style={{width: 800, height: 600}} />
-            <button onClick={processData}>Seed DB</button>
+            <button onClick={processData}>{t('home.db')}</button>
         </div>
     )
 
