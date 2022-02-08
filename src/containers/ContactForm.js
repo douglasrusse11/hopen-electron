@@ -5,8 +5,6 @@ import { API } from 'aws-amplify';
 import {Container, Button, Form} from 'react-bootstrap';
 import { useTranslation, Trans } from 'react-i18next';
 
-import awsExports from "../aws-exports";
-Amplify.configure(awsExports);
 
 async function addContact() {
   const data = {
