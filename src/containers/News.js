@@ -1,5 +1,9 @@
 import React from 'react';
+
+import { Grid, Button, Card, CardContent, CardActions, Typography} from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { useTranslation, Trans } from 'react-i18next';
+
 
 
 async function searchNews(q) {
@@ -17,8 +21,10 @@ async function searchNews(q) {
 }
 
 function News() {
+
+  const [query, setQuery] = React.useState("");
   const {t, i18n} = useTranslation();
-  const [query, setQuery] = React.useState("docker");
+
   const [list, setList] = React.useState(null);
 
   const search = (e) => {
@@ -27,17 +33,21 @@ function News() {
   };
 
   return (
-    <div className="app">
+    <div>
 
       <form onSubmit={search}>
-        <input
-          autoFocus
+        <TextField style={{padding: 24}}
           value={query}
+          placeholder="Search for news"
+          margin="normal"
           onChange={e => setQuery(e.target.value)}
+          
         />
-        <button>{t('contact.search')}</button>
-      </form>
 
+        <button>{t('contact.search')}</button>
+
+      </form>
+      <Grid container spacing={24} style={{padding:24}}>
       {!list
         ? null
         : list.length === 0
@@ -48,6 +58,9 @@ function News() {
             ))}
           </ul>
       }
+
+      </Grid>
+      
     </div>
   );
 }
@@ -57,23 +70,30 @@ function Item({ item }) {
   const formatDate = s => new Date(s).toLocaleDateString(undefined, { dateStyle: 'long' });
 
   return (
-    <li className="item">
-      {item.image &&
+    <Card>
+    {/* <li className="item"> */}
+      {/* {item.image &&
         <img className="thumbnail"
           alt=""
           src={item.image?.thumbnail?.contentUrl}
         />
-      }
+      } */}
+      <CardContent>
+      <Typography gutterBottom variant="headline" component="h2">
+      <a href={item.url}></a>{item.name}
+      </Typography>
+      <Typography component="p">
+      {item.description}
+      </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" color="primary" href={item.url} target="_blank">
+          Read more
+          </Button>
+      </CardActions>
+      
 
-      <h2 className="title">
-        <a href={item.url}>{item.name}</a>
-      </h2>
-
-      <p className="description">
-        {item.description}
-      </p>
-
-      <div className="meta">
+      {/* <div className="meta">
         <span>{formatDate(item.datePublished)}</span>
 
         <span className="provider">
@@ -89,8 +109,10 @@ function Item({ item }) {
         {item.category &&
           <span>{separateWords(item.category)}</span>
         }
-      </div>
-    </li>
+      </div> */}
+    {/* </li> */}
+    </Card>
+    
   );
 }
 

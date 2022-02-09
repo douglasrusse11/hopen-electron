@@ -13,6 +13,12 @@ import Seeder from './Seeder';
 import config from '../aws-exports';
 import News from './News';
 import ContactForm from './ContactForm';
+import {Typography} from '@material-ui/core';
+import NewsAPI from './NewsAPI';
+
+
+
+
 
 
 const Router = () => {
@@ -51,8 +57,11 @@ const Router = () => {
     }, []);
         
 
+    
+
     return (
-        <BrowserRouter >
+        
+            <BrowserRouter >
             <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
             <div style={{display: "flex", width: "100%", height: "88vh"}}>
             {displayMenu && <Menu user={user} />}
@@ -61,12 +70,18 @@ const Router = () => {
                 <Route path="/resources/bycategory/:category" element={<ResourceList user={user} client={client}/>} />
                 {/* <Route path="/resources/:id" element={<ResourceContainer user={user} formData={formData} setFormData={setFormData} client={client}/>} /> */}
                 <Route path="/seeder" element={<Seeder client={client}/>} />
+                <Route path="/contact" element={<ContactForm/>} />
+                <Route path="/news" element={<NewsAPI/>} />
+                
+            
+
             </Routes>
             </div>
-            <ContactForm/>
-            <News/>
             <Footer />
         </BrowserRouter>
+
+       
+        
     )
 }
 
