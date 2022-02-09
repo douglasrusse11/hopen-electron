@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ResourceType } from '../models';
 
+
 const Nav = () => {
 
     const categoryMap = {
