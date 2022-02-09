@@ -23,7 +23,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const Header = function ({ user, displayMenu, setDisplayMenu }) {
+const Header = function ({ user, displayMenu, setDisplayMenu, displayLogin, setDisplayLogin }) {
 
 
 const lngs = {
@@ -37,7 +37,7 @@ const lngs = {
 
     let subtitle;
 
-    const [displayLogin, setDisplayLogin] = useState(false);
+    
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
         subtitle.style.color = '#f00';
@@ -114,7 +114,7 @@ const lngs = {
             isOpen={displayLogin}
             onAfterOpen={afterOpenModal}
             onRequestClose={() => setDisplayLogin(false)}
-            // style={customStyles}
+            style={customStyles}
             contentLabel="Example Modal"
         ><Authenticator/></Modal>
         </>

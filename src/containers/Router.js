@@ -24,14 +24,18 @@ import NewsAPI from './NewsAPI';
 const Router = () => {
     const [user, setUser] = useState(null);
     const [client, setClient] = useState(null);
-    const [displayMenu, setDisplayMenu] = useState(false)
+    const [displayMenu, setDisplayMenu] = useState(false);
+    const [displayLogin, setDisplayLogin] = useState(false);
 
     useEffect(() => {
         DataStore.clear();
         getUser()
         Hub.listen('auth', (data) => {
             const { payload: { event }} = data
-            if (event === 'signIn' || event === 'signOut') getUser()
+            if (event === 'signIn' || event === 'signOut') {
+                getUser();
+                setDisplayLogin(false);
+            }
         })
     }, [])
       
@@ -62,7 +66,7 @@ const Router = () => {
     return (
         
             <BrowserRouter >
-            <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} />
+            <Header user={user} displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} displayLogin={displayLogin} setDisplayLogin={setDisplayLogin} />
             <div style={{display: "flex", width: "100%", height: "88vh"}}>
             {displayMenu && <Menu user={user} />}
             <Routes>
