@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
 import Location from 'aws-sdk/clients/location';
+import { DataStore } from '@aws-amplify/datastore';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from './Home';
@@ -20,6 +21,7 @@ const Router = () => {
     const [displayMenu, setDisplayMenu] = useState(false)
 
     useEffect(() => {
+        DataStore.clear();
         getUser()
         Hub.listen('auth', (data) => {
             const { payload: { event }} = data
