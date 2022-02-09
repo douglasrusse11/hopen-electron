@@ -104,7 +104,8 @@ export const schema = {
                                     "read",
                                     "update",
                                     "delete"
-                                ]
+                                ],
+                                "provider": "apiKey"
                             }
                         ]
                     }
