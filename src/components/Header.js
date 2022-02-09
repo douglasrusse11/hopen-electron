@@ -4,8 +4,9 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import '@aws-amplify/ui-react/styles.css';
-import {AppBar, Box, Toolbar, Typography, Button, IconButton} from '@mui/material'
+
 import MenuIcon from '@mui/icons-material/Menu'
+import { useTranslation, Trans } from 'react-i18next';
 
 const customStyles = {
     content: {
@@ -19,7 +20,18 @@ const customStyles = {
   };
 
 Modal.setAppElement('#root');
+
 const Header = function ({ user, displayMenu, setDisplayMenu }) {
+
+
+const lngs = {
+  en: { nativeName: 'English' },
+  ar: { nativeName: 'Arabic' }
+};
+
+
+    const {t, i18n} = useTranslation();
+
     let subtitle;
 
     const [displayLogin, setDisplayLogin] = useState(false);
@@ -67,7 +79,14 @@ const Header = function ({ user, displayMenu, setDisplayMenu }) {
                     <h1 style={styles.heading}>HopeN</h1>
                 </Link>
                 </div>
-                { user ? <h1 style={styles.heading} onClick={() => {Auth.signOut(); setDisplayLogin(false)}}>Sign Out</h1> : <h1 style={styles.heading} onClick={() => setDisplayLogin(!displayLogin)}>Sign In</h1> }
+                <div>
+                    {Object.keys(lngs).map((lng) => (
+                        <button key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() => i18n.changeLanguage(lng)}>
+                            {lngs[lng].nativeName}
+                        </button>
+                    ))}
+                </div>
+                { user ? <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => {Auth.signOut(); setDisplayLogin(false)}}>{t('home.signout')}</h1> : <h1 style={{...styles.heading, marginRight:'2vh'}} onClick={() => setDisplayLogin(!displayLogin)}>{t('home.signin')}</h1> }
             </div>
         </div>
         <Modal
@@ -85,7 +104,7 @@ const styles = {
     container: {
         width: '100%',
         height: '6vh',
-        backgroundColor: '#25274d'
+        backgroundColor: '#0F1626',
     },
     headings: {
         width: '100%',
@@ -95,8 +114,9 @@ const styles = {
     heading: {
         fontSize: 42,
         margin: 0,
-        color: 'whitesmoke',
-        padding: '0px 10px 0px 10px'
+        color: '#F5F5F5',
+        padding: '0px 10px 0px 10px',
+        letterSpacing: '3px'
     }
 
 }

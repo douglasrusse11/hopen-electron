@@ -1,8 +1,7 @@
 import React from 'react';
+import './App.css';
 import Router from './containers/Router';
-import { getBitcoinArticles } from'./containers/NewsAPI'; 
-import { Container} from '@material-ui/core';
-import Articles from './components/Articles'
+import i18n from './i18n';
 
 function App() {
   return (

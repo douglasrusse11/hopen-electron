@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import Map from '../components/Map';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import { useTranslation, Trans } from 'react-i18next';
 
 const initialState = {
     category: '',
@@ -26,6 +27,7 @@ const ResourceList = ({user, client}) => {
     const [userCoords, setUserCoords] = useState(null);
     const [route, setRoute] = useState(null);
     let { category } = useParams();
+    const {t, i18n} = useTranslation();
 
     useEffect(() => {
         setSelectedResource({id: 0});
@@ -123,7 +125,7 @@ const ResourceList = ({user, client}) => {
             { displayUpdateForm.id === resource.id && displayUpdateForm.display === true ? 
                 <>
                 <Form onSubmit={() => updateResource(resource.id)} formData={formData} setFormData={setFormData} />
-                <button onClick={() => setDisplayUpdateForm({id: 0, display: false})}>Close</button>
+                <button onClick={() => setDisplayUpdateForm({id: 0, display: false})}>{t('form.close')}</button>
                 </>
             : 
             <div key={resource.id} style={styles.resource} >
@@ -157,7 +159,7 @@ const ResourceList = ({user, client}) => {
     const displayForm = (style) => {
         return (
             <div style={styles.container}>
-                {user && user.isAdmin && (displayAddNew ? <button style={styles.button} onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>+ Add new</button> : <><Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} client={client} /><button style={{width: "100%"}} onClick={() => setDisplayAddNew(true)}>Close</button></>)}
+                {user && user.isAdmin && (displayAddNew ? <button style={styles.button} onClick={() => {setFormData(initialState); setDisplayAddNew(false)}}>{t('form.add')}</button> : <><Form onSubmit={createResource} formData={{...formData, category: category}} setFormData={setFormData} client={client} /><button style={{width: "100%"}} onClick={() => setDisplayAddNew(true)}>{t('form.close')}</button></>)}
             </div>
         )
     }
@@ -174,7 +176,7 @@ const ResourceList = ({user, client}) => {
     }
 
     return (
-        <div style={{display: "flex", flexDirection: "column", width: "100%", height: "100%", backgroundColor: "#29648a", color: "whitesmoke"}}>
+        <div style={{display: "flex", flexDirection: "column", width: "100%", height: "100%", backgroundColor: "#F5F5F5", color: "#49274A"}}>
             <Nav />
             <div style={{display: "flex", height: "100%", width: "100%"}}>
                 {resourceList.length !== 0 && (selectedResource.id === 0 ? <Map resources={resourceList} userCoords={null} route={null} setSelectedResource={setSelectedResource} /> : <Map resources={[selectedResource]} userCoords={userCoords} route={route} setSelectedResource={setSelectedResource} />)}
@@ -191,6 +193,7 @@ const styles = {
     resource: {
         margin: 0,
         marginBottom: 10,
+        marginTop: 15,
         paddingLeft: 20,
         display: 'flex',
         justifyContent: 'space-between',
@@ -202,7 +205,7 @@ const styles = {
     },
     heading: {
         margin: 0,
-        color: 'whitesmoke'
+        color: '#0F1626'
     },
     button: {
         height: 20,
