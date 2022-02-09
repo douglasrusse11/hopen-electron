@@ -19,9 +19,8 @@ const customStyles = {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
     },
+    overlay: {zIndex: 1000}
   };
-
-Modal.setAppElement('#root');
 
 const Header = function ({ user, displayMenu, setDisplayMenu, displayLogin, setDisplayLogin }) {
 
@@ -115,7 +114,8 @@ const lngs = {
             onAfterOpen={afterOpenModal}
             onRequestClose={() => setDisplayLogin(false)}
             style={customStyles}
-            contentLabel="Example Modal"
+            ariaHideApp={false}
+            contentLabel="Log In"
         ><Authenticator/></Modal>
         </>
     )
