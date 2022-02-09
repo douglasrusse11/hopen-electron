@@ -1,30 +1,4 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-hopen-dev-94200-authRole",
-      "UnauthRoleArn": "arn:aws:iam::264950887259:role/amplify-hopen-dev-94200-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::264950887259:role/amplify-hopen-dev-94200-authRole",
-      "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-hopen-dev-94200-deployment",
-      "UnauthRoleName": "amplify-hopen-dev-94200-unauthRole",
-      "StackName": "amplify-hopen-dev-94200",
-      "StackId": "arn:aws:cloudformation:eu-west-1:264950887259:stack/amplify-hopen-dev-94200/8adc8110-84d5-11ec-8689-06c3437970eb",
-      "AmplifyAppId": "d16l9nx7jhxdo4"
-    },
-    "categories": {
-      "auth": {
-        "hopenc485c56a": {}
-      },
-      "function": {
-        "scraper": {},
-        "addDataToDB": {},
-        "hopenc485c56aPostConfirmation": {
-          "deploymentBucketName": "amplify-hopen-dev-94200-deployment",
-          "s3Key": "amplify-builds/hopenc485c56aPostConfirmation-6b4d545745614f703554-build.zip"
-        }
-      }
-    }
-  },
   "base": {
     "awscloudformation": {
       "AuthRoleName": "amplify-hopen-base-94448-authRole",
@@ -50,6 +24,32 @@
         "formfunction": {
           "deploymentBucketName": "amplify-hopen-base-94448-deployment",
           "s3Key": "amplify-builds/formfunction-537853544358504e5730-build.zip"
+        }
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hopen-dev-94200-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264950887259:role/amplify-hopen-dev-94200-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264950887259:role/amplify-hopen-dev-94200-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-hopen-dev-94200-deployment",
+      "UnauthRoleName": "amplify-hopen-dev-94200-unauthRole",
+      "StackName": "amplify-hopen-dev-94200",
+      "StackId": "arn:aws:cloudformation:eu-west-1:264950887259:stack/amplify-hopen-dev-94200/8adc8110-84d5-11ec-8689-06c3437970eb",
+      "AmplifyAppId": "d16l9nx7jhxdo4"
+    },
+    "categories": {
+      "auth": {
+        "hopenc485c56a": {}
+      },
+      "function": {
+        "scraper": {},
+        "addDataToDB": {},
+        "hopenc485c56aPostConfirmation": {
+          "deploymentBucketName": "amplify-hopen-dev-94200-deployment",
+          "s3Key": "amplify-builds/hopenc485c56aPostConfirmation-6b4d545745614f703554-build.zip"
         }
       }
     }

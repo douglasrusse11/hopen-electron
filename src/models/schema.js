@@ -100,12 +100,22 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "Admin"
+                                ],
+                                "operations": [
                                     "create",
                                     "read",
                                     "update",
                                     "delete"
-                                ],
-                                "provider": "apiKey"
+                                ]
                             }
                         ]
                     }
