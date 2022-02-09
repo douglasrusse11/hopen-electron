@@ -12,7 +12,7 @@ i18n
       escapeValue: false,
     },
     resources: {
-      en: {
+      GB: {
         translation: {
             home: {
                 signin: 'Sign In',
@@ -44,11 +44,17 @@ i18n
                 add: "+ Add new",
                 close: "Close",
                 noresource: "No resources to display for ",
-                submit: "Submit"
+                submit: "Submit",
+                name: "Name",
+                address: "Address",
+                description: "Description",
+                phone: "Phone Number",
+                email: "Email Address",
+                hours: "Opening Hours"
             }
         }
       },
-      ar: {
+      SY: {
           translation: {
               home: {
                 signin: 'تسجيل الدخول',
@@ -80,7 +86,13 @@ i18n
                 add: "+ اضافة جديد",
                 close: "غلق",
                 noresource: "لا توجد موارد لعرضها ",
-                submit: "إرسال"
+                submit: "إرسال",
+                name: "اسم",
+                address: "تبوك",
+                description: "وصف",
+                phone: "رقم التليفون",
+                email: "عنوان البريد الالكترونى",
+                hours: "ساعات العمل"
             }
           }
       }
