@@ -12,7 +12,7 @@ i18n
       escapeValue: false,
     },
     resources: {
-      en: {
+      GB: {
         translation: {
             home: {
                 signin: 'Sign In',
@@ -54,7 +54,7 @@ i18n
             }
         }
       },
-      ar: {
+      SY: {
           translation: {
               home: {
                 signin: 'تسجيل الدخول',
